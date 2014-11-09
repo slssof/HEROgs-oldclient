@@ -109,12 +109,12 @@ function loadIndex(lg) {
 }
 
 function checkLoginName() {
-    console.log(sKey.pub);
-    EncryptionResult = encrypt.encrypt($( "#inputLogin").val());
-    console.log('Chipper = ' + EncryptionResult);
-    data = {};
-    data.login = EncryptionResult;
-    socket.emit('checkLoginName', JSON.stringify(data));
+//    console.log(sKey.pub);
+//    EncryptionResult = encrypt.encrypt($( "#inputLogin").val());
+//    console.log('Chipper = ' + EncryptionResult);
+//    data = {};
+//    data.login = EncryptionResult;
+    socket.emit('checkLoginName', JSON.stringify(encrypt.encrypt($( "#inputLogin").val())));
 }
 
 function checkPassword() {
@@ -135,9 +135,7 @@ function login() {
     loginData.password=$("#inputPassword1").val();
     var validate = validator.matches(loginData.login, /^[0-9A-Za-zА-Яа-яЁё\s!@#$()+.=]+$/) * validator.matches(loginData.password, /^[0-9A-Za-zА-Яа-яЁё\s!@#$()+.=_]+$/);
     if(validate) {
-        var data = JSON.stringify(loginData);
-        EncryptionResult = encrypt.encrypt(data);
-        socket.emit('login', JSON.stringify(data));
+        socket.emit('login', JSON.stringify(encrypt.encrypt(JSON.stringify(loginData))));
     }
 
 }
