@@ -1,0 +1,43 @@
+/**
+ * Created by slshome on 29.07.14.
+ */
+/**
+ * Created by slshome on 29.07.14.
+ */
+var language = {};
+language.index={};
+
+language.index.about = {};
+language.index.about.aboutgame = "About game";
+language.index.about.Newsgame = "News game";
+
+language.index.login = {};
+language.index.login.login = "Login";
+language.index.login.password = "Password";
+language.index.login.enter = "Enter";
+language.index.login.register = "Register";
+language.index.login.prbattle = "Trial fight";
+language.index.login.modal_title = "Register";
+language.index.login.inputLogin = "Login";
+language.index.login.inputLoginValue = "Input your login";
+language.index.login.inputLoginTitle = "0-9, A-Z, a-z, А-Я, а-я, Ёё,  ,!,@,#,$,(,),-,+,point";
+language.index.login.inputLoginPassword = "Password";
+language.index.login.inputName = "Your name";
+language.index.login.inputNameValue = "Inpur your name";
+language.index.login.inputNameTitle = "Only 0-9, A-Z, a-z, А-Я, а-я, Ёё, ";
+language.index.login.inputBirthDay = "Birth day";
+language.index.login.inputBirthDayValue = "DD.MM.YYYY";
+language.index.login.inputBirthDayTitle ="DD.MM.YYYY";
+language.index.login.inputSex = "Sex";
+language.index.login.inputSexMan = "Man";
+language.index.login.inputSexWoman = "Woman";
+language.index.login.inputEmail = "E-Mail";
+language.index.login.inputLang = "Interface language";
+language.index.login.inputLangRu = "Russian";
+language.index.login.inputLangEn = "English";
+language.index.login.inputSubmit = "Enter";
+
+language.index.topmenu = {};
+language.index.topmenu.HEROgs = "HEROgs";
+
+language.index.qqq = 'On english';

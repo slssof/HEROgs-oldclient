@@ -1,0 +1,249 @@
+<!-- Блок видимых дивов -->
+<div id="main">
+    <div class="element"></div>
+    <button id="modal-login" href="#modal-container-login" type="button" data-toggle="modal" class="_button _button-1"><%= language.index.login.enter %></button>
+    <button id="modal-register" href="#modal-container-register" type="button" data-toggle="modal"class="_button _button-2"><%= language.index.login.register %></button>
+
+<!--
+<div id="main" class="parallax">
+    <div id="herogs">
+         <img id="img1" src="img/common/bigLogo.png">
+    </div>
+
+    <div id="bt_login">
+        <button id="modal-login" href="#modal-container-login" type="button" class="btn" data-toggle="modal"><%= language.index.login.enter %></button>
+    </div>
+
+    <div id="bt_register">
+        <button id="modal-register" href="#modal-container-register" type="button" class="btn" data-toggle="modal"><%= language.index.login.register %></button>
+    </div>
+
+-->
+
+    <!-- Иконки смены языков  -->
+
+    <div id="sel_ru">
+        <img src="img/index/rus.png" onclick = "loadIndex('ru');">
+    </div>
+
+    <div id="sel_en">
+        <img src="img/index/eng.png" onclick = "loadIndex('en');">
+    </div>
+
+</div>
+
+<div id="podval"></div>
+<!-- Конец блока видимых дивов -->
+
+
+
+
+<!-- Блок невидимых и всяких всплывающих и пр.. дивов -->
+
+<!-- Описание всплывающего окна Логина -->
+<div class="modal fade" id="modal-container-login" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Заголовок окна  -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">
+                    <%= language.index.login.enter %>
+                </h4>
+            </div>
+            <!-- Конец заголовка окна  -->
+            <!--  Тело окна -->
+            <div class="modal-body">
+                <!-- Форма ввода данных  -->
+                <form class="form-horizontal" role="form" id="loginForm">
+                    <!-- Поле ввода логина  -->
+                    <!--                    <div id="inputLoginFormGroup" class="form-control error"> -->
+                    <div class="form-group">
+                        <label for="inputLogin" class="col-sm-3 control-label"><%= language.index.login.inputLogin %></label>
+                        <div class="col-sm-9 error">
+                            <input pattern="^[0-9A-Za-zА-Яа-яЁё\s!@#$()+.=]+$"
+                                   type="text"
+                                   class="form-control"
+                                   id="inputLoginEnter" />
+                        </div>
+                    </div>
+                    <!--                    </div> -->
+                    <!-- Поле ввода пароля  -->
+                    <div class="form-group">
+                        <label for="inputPasswordEnter" class="col-sm-3 control-label"><%= language.index.login.inputLoginPassword %></label>
+                        <div class="col-sm-9">
+                            <input type="password"
+                                   class="form-control"
+                                   id="inputPasswordEnter"/>
+                        </div>
+                    </div>
+
+                    <!-- Кнопка окей  -->
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button id="btnRegSend"type="submit" class="btn btn-default" onclick="sendRegForm();"><%= language.index.login.inputSubmit %></button>
+                        </div>
+                    </div>
+                </form>
+                <!-- Конец формы регистрации  -->
+            </div>
+            <!-- Подвал формы  -->
+            <div class="modal-footer">
+                <!--                Кнопки в подвале закрыть и сохранить
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                                <button type="button" class="btn btn-primary">Сохранить</button>
+                -->
+            </div>
+            <!-- Конец тела окна  -->
+        </div>
+    </div>
+</div>
+<!-- Конец описания всплывающего окна регистрации  -->
+
+
+
+<!-- Описание всплывающего окна регистраци  -->
+<div class="modal fade" id="modal-container-register" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Заголовок окна  -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">
+                    <%= language.index.login.modal_title %>
+                </h4>
+            </div>
+            <!-- Конец заголовка окна  -->
+            <!--  Тело окна -->
+            <div class="modal-body">
+                <!-- Форма ввода данных  -->
+                <form class="form-horizontal" role="form" id="registerForm">
+                    <!-- Поле ввода логина  -->
+                    <!--                    <div id="inputLoginFormGroup" class="form-control error"> -->
+                    <div id="checkLoginColor" class="form-group">
+                        <label for="inputLogin" class="col-sm-3 control-label"><%= language.index.login.inputLogin %></label>
+                        <div class="col-sm-9 error">
+                            <input placeholder="<%= language.index.login.inputLoginValue %>"
+                                   title="<%= language.index.login.inputLoginTitle %>"
+                                   pattern="^[0-9A-Za-zА-Яа-яЁё\s!@#$()+.=]+$"
+                                   type="text"
+                                   class="form-control"
+                                   id="inputLogin" data-x="Введите ваш логин (буквы и пробел)" onkeyup="checkLoginName();"/>
+                        </div>
+                    </div>
+                    <!--                    </div> -->
+                    <!-- Поле ввода пароля  -->
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-3 control-label"><%= language.index.login.inputLoginPassword %></label>
+                        <div class="col-sm-9">
+                            <input type="password"
+                                   class="form-control"
+                                   id="inputPassword3"
+                                   title="<%= language.index.login.inputLogPasswordinTitle %>"
+                                   pattern="^[0-9A-Za-zА-Яа-яЁё\s!@#$()+.=_]+$"  />
+                        </div>
+                    </div>
+                    <!-- Поле ввода второго пароля для сравнения  -->
+                    <div class="form-group">
+                        <label id="checkLoginPassword4" for="inputPassword4" class="col-sm-3 control-label"><%= language.index.login.inputLoginPassword2 %></label>
+                        <div class="col-sm-9">
+                            <input type="password"
+                                   class="form-control"
+                                   onkeyup="checkPassword();"
+                                   id="inputPassword4"
+                                   title="<%= language.index.login.inputLogPasswordinTitle2 %>"
+                                    />
+                        </div>
+                    </div>
+                    <!-- Поле ввода мыла -->
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label"><%= language.index.login.inputEmail %></label>
+                        <div class="col-sm-9">
+                            <input type="email"
+                                   class="validate[required,custom[email]] form-control"
+                                   id="inputEmail3"
+                                   title="<%= language.index.login.inputLogEmailTitle %>"
+                                   placeholder="<%= language.index.login.inputEmailValue %>"/>
+                        </div>
+                    </div>
+                    <!-- Поле ввода реального имени  -->
+                    <div class="form-group">
+                        <label for="inputName" class="col-sm-3 control-label"><%= language.index.login.inputName %></label>
+                        <div class="col-sm-9">
+                            <input placeholder="<%= language.index.login.inputNameValue %>"
+                                   title="<%= language.index.login.inputNameTitle %>"
+                                   pattern="^[0-9A-Za-zА-Яа-яЁё\s]+$"
+                                   type="text" class="form-control"
+                                   id="inputRealName"
+                                   data-x="Введите ваш логин (буквы и пробел)"/>
+                        </div>
+                    </div>
+                    <!-- Поле ввода дня рождения  -->
+                    <div class="form-group">
+                        <label for="inputBirthDay" class="col-sm-3 control-label"><%= language.index.login.inputBirthDay %></label>
+                        <div class="col-sm-9">
+                            <input value="<%= language.index.login.inputBirthDayValue %>"
+                                   title="<%= language.index.login.inputBirthDayTitle %>"
+                                   type="date"
+                                   class="validate[required,custom[date]] form-control"
+                                   id="inputBirthDay"
+                                   data-x="Введите ваш логин (буквы и пробел)"/>
+                        </div>
+                    </div>
+                    <!-- Поле ввода пола выпадающий список -->
+                    <div class="form-group">
+                        <label for="inputSex" class="col-sm-3 control-label"><%= language.index.login.inputSex %></label>
+                        <div class="col-sm-9">
+                            <select class="form-control" name="index_sex" id= "index_sex" size="1">
+                                <option value="sexMan"><%= language.index.login.inputSexMan %></option>
+                                <option value="sexWoman"><%= language.index.login.inputSexWoman %></option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Поле ввода языка выпадающий список -->
+                    <div class="form-group">
+                        <label for="inputLang" class="col-sm-3 control-label"><%= language.index.login.inputLang %></label>
+                        <div class="col-sm-9">
+                            <select class="form-control" name="index_lang" id= "index_lang" size="1">
+                                <option value="langRu"><%= language.index.login.inputLangRu %></option>
+                                <option value="langEn"><%= language.index.login.inputLangEn %></option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Кнопка окей  -->
+                    <!-- ToDo: сделать исчезающей при неправильно заполненных полях  -->
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button id="btnRegSend"type="submit" class="btn btn-default" onclick="sendRegForm();"><%= language.index.login.inputSubmit %></button>
+                        </div>
+                    </div>
+                </form>
+                <!-- Конец формы регистрации  -->
+            </div>
+            <!-- Подвал формы  -->
+            <div class="modal-footer">
+                <!--                Кнопки в подвале закрыть и сохранить
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                                <button type="button" class="btn btn-primary">Сохранить</button>
+                -->
+            </div>
+            <!-- Конец тела окна  -->
+        </div>
+    </div>
+</div>
+<!-- Конец описания всплывающего окна регистрации  -->
+<!-- Кнопка Об игре слева -->
+<div id="about" class="panelAbout">
+
+</div>
+<a class="triggerAbout" href="#"><%= language.index.topmenu.about %></a>
+
+<!-- Кнопка Новости слева -->
+<div id="panelNews" class="panelNews">
+
+</div>
+<a class="triggerNews" href="#"><%= language.index.about.Newsgame %></a>
+
+
+
+<!-- Конец блока невидимых и всяких всплывающих и пр.. дивов -->
