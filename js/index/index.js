@@ -13,7 +13,7 @@ $(function() {
     encrypt = new JSEncrypt();
     decrypt = new JSEncrypt();
 
-        socket = io.connect('http://sls.com:3000');
+        socket = io.connect('http://localhost:3000');
         socket.on('connect', function (data) {
             console.log(socket.io.engine.id);
             socket.on('otvCheckLoginName', function(data) {
@@ -47,8 +47,6 @@ $(function() {
 
             });
         });
-
-
     loadIndex();
 });
 
@@ -86,19 +84,23 @@ function loadIndex(lg) {
         $.getScript(pathVal, function() {$("#registerForm").validationEngine();});
 
         $( "#index" ).html(new EJS({url: 'tpl/index/index.ejs'}).render());
-        loadAbout();
-        loadNews();
-        loadPodval();
 
-        $(".triggerAbout").click(function(){
-            $(".panelAbout").toggle("fast");
-            $(this).toggleClass("activeAbout");
-            return false;
+        $( '#lang_sel_en' ).bind('click' , function(){
+            console.log('en');
+            loadIndex('en');
         });
-        $(".triggerNews").click(function(){
-            $(".panelNews").toggle("fast");
-            $(this).toggleClass("activeNews");
-            return false;
+        $( '#lang_sel_ru' ).on('click', function(){
+            console.log('ru');
+            loadIndex('ru');
+        });
+        //loadAbout();
+        //loadNews();
+        loadPodval();
+        $( '#btnLoginSend' ).on('click', function(){
+            sendLoginForm();
+        });
+        $( '#btnRegSend' ).on('click', function(){
+            sendRegForm();
         });
     });
 
@@ -162,5 +164,35 @@ function sendRegForm() {
         socket.emit('regUser', regData );
     }
 }
+
+function sendLoginForm() {
+    /*
+    var regData={};
+    regData.login=$("#inputLogin").val();
+    regData.password=$("#inputPassword3").val();
+    regData.email=$("#inputEmail3").val();
+    regData.realName=$("#inputRealName").val();
+    regData.birthDay=$("#inputBirthDay").val();
+    regData.sex=$("#index_sex").val();
+    regData.lang=$("#index_lang").val();
+
+    var validate = validator.matches(regData.login, /^[0-9A-Za-zА-Яа-яЁё\s!@#$()+.=]+$/) *
+        validator.matches(regData.password, /^[0-9A-Za-zА-Яа-яЁё\s!@#$()+.=_]+$/) *
+        validator.isEmail(regData.email) *
+        validator.matches(regData.realName, /^[0-9A-Za-zА-Яа-яЁё\s]+$/) *
+        validator.isDate(regData.birthDay);
+    if (regData.sex == "sexMan") regData.sex = 1;
+    if (regData.sex == "sexWoman") regData.sex = 0;
+    if (regData.lang == "langRu") regData.lang = 0;
+    if (regData.lang == "langEn") regData.lang = 1;
+
+    if(validate) {
+        socket.emit('loginUser', regData );
+    }
+
+    */
+}
+
+
 
 

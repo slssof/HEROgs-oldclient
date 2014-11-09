@@ -23,13 +23,11 @@
     <!-- Иконки смены языков  -->
 
     <div id="sel_ru">
-        <img src="img/index/rus.png" onclick = "loadIndex('ru');">
+        <img id='lang_sel_ru'  src="img/index/rus.png">
     </div>
-
     <div id="sel_en">
-        <img src="img/index/eng.png" onclick = "loadIndex('en');">
+        <img id='lang_sel_en' src="img/index/eng.png">
     </div>
-
 </div>
 
 <div id="podval"></div>
@@ -81,7 +79,7 @@
                     <!-- Кнопка окей  -->
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button id="btnLoginSend"type="submit" class="btn btn-default" onclick="sendRegForm();"><%= language.index.login.inputSubmit %></button>
+                            <button id="btnLoginSend"type="submit" class="btn btn-default"><%= language.index.login.inputSubmit %></button>
                         </div>
                     </div>
                 </form>
@@ -214,7 +212,7 @@
                     <!-- ToDo: сделать исчезающей при неправильно заполненных полях  -->
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button id="btnRegSend"type="submit" class="btn btn-default" onclick="sendRegForm();"><%= language.index.login.inputSubmit %></button>
+                            <button id="btnRegSend" type="submit" class="btn btn-default" onclick="sendRegForm();"><%= language.index.login.inputSubmit %></button>
                         </div>
                     </div>
                 </form>
@@ -233,17 +231,4 @@
 </div>
 <!-- Конец описания всплывающего окна регистрации  -->
 <!-- Кнопка Об игре слева -->
-<div id="about" class="panelAbout">
-
-</div>
-<a class="triggerAbout" href="#"><%= language.index.topmenu.about %></a>
-
-<!-- Кнопка Новости слева -->
-<div id="panelNews" class="panelNews">
-
-</div>
-<a class="triggerNews" href="#"><%= language.index.about.Newsgame %></a>
-
-
-
 <!-- Конец блока невидимых и всяких всплывающих и пр.. дивов -->
