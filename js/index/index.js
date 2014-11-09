@@ -97,7 +97,7 @@ function loadIndex(lg) {
         //loadNews();
         loadPodval();
         $( '#btnLoginSend' ).on('click', function(){
-            sendLoginForm();
+            login();
         });
         $( '#btnRegSend' ).on('click', function(){
             sendRegForm();
@@ -135,7 +135,9 @@ function login() {
     loginData.password=$("#inputPassword1").val();
     var validate = validator.matches(loginData.login, /^[0-9A-Za-zА-Яа-яЁё\s!@#$()+.=]+$/) * validator.matches(loginData.password, /^[0-9A-Za-zА-Яа-яЁё\s!@#$()+.=_]+$/);
     if(validate) {
-        socket.emit('login', loginData );
+        var data = JSON.stringify(loginData);
+        EncryptionResult = encrypt.encrypt(data);
+        socket.emit('login', JSON.stringify(data));
     }
 
 }
