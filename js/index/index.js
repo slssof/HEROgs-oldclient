@@ -15,7 +15,7 @@ $(function() {
 
         socket = io.connect('http://localhost:3000');
         socket.on('connect', function (data) {
-            console.log(socket.io.engine.id);
+//            console.log(socket.io.engine.id);
             socket.on('otvCheckLoginName', function(data) {
                 if (data.exist) {
                     $( "#checkLoginColor" ).removeClass("has-success").addClass("has-error");
@@ -42,7 +42,7 @@ $(function() {
 //                str = str.replace('\n-----END RSA PRIVATE KEY-----','');
 //                sKey.priv = str;
 //                localStorage.rsaKey = JSON.stringify(sKey);
-                console.log(sKey.pub);
+//                console.log(sKey.pub);
                 encrypt.setPublicKey(sKey.pub);
 
             });
@@ -86,11 +86,11 @@ function loadIndex(lg) {
         $( "#index" ).html(new EJS({url: 'tpl/index/index.ejs'}).render());
 
         $( '#lang_sel_en' ).bind('click' , function(){
-            console.log('en');
+//            console.log('en');
             loadIndex('en');
         });
         $( '#lang_sel_ru' ).on('click', function(){
-            console.log('ru');
+//            console.log('ru');
             loadIndex('ru');
         });
         //loadAbout();
@@ -131,11 +131,11 @@ function checkPassword() {
 
 function login() {
     var loginData={};
-    loginData.login=$("#inputLogin1").val();
-    loginData.password=$("#inputPassword1").val();
-    var validate = validator.matches(loginData.login, /^[0-9A-Za-zА-Яа-яЁё\s!@#$()+.=]+$/) * validator.matches(loginData.password, /^[0-9A-Za-zА-Яа-яЁё\s!@#$()+.=_]+$/);
+    loginData.login = encrypt.encrypt($("#inputLoginEnter").val());
+    loginData.password = encrypt.encrypt($("#inputPasswordEnter").val());
+    var validate = 1; //validator.matches(loginData.login, /^[0-9A-Za-zА-Яа-яЁё\s!@#$()+.=]+$/) * validator.matches(loginData.password, /^[0-9A-Za-zА-Яа-яЁё\s!@#$()+.=_]+$/);
     if(validate) {
-        socket.emit('login', JSON.stringify(encrypt.encrypt(JSON.stringify(loginData))));
+        socket.emit('login', loginData);
     }
 
 }
