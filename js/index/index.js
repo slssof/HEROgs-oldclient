@@ -165,33 +165,6 @@ function sendRegForm() {
     }
 }
 
-function sendLoginForm() {
-    /*
-    var regData={};
-    regData.login=$("#inputLogin").val();
-    regData.password=$("#inputPassword3").val();
-    regData.email=$("#inputEmail3").val();
-    regData.realName=$("#inputRealName").val();
-    regData.birthDay=$("#inputBirthDay").val();
-    regData.sex=$("#index_sex").val();
-    regData.lang=$("#index_lang").val();
-
-    var validate = validator.matches(regData.login, /^[0-9A-Za-zА-Яа-яЁё\s!@#$()+.=]+$/) *
-        validator.matches(regData.password, /^[0-9A-Za-zА-Яа-яЁё\s!@#$()+.=_]+$/) *
-        validator.isEmail(regData.email) *
-        validator.matches(regData.realName, /^[0-9A-Za-zА-Яа-яЁё\s]+$/) *
-        validator.isDate(regData.birthDay);
-    if (regData.sex == "sexMan") regData.sex = 1;
-    if (regData.sex == "sexWoman") regData.sex = 0;
-    if (regData.lang == "langRu") regData.lang = 0;
-    if (regData.lang == "langEn") regData.lang = 1;
-
-    if(validate) {
-        socket.emit('loginUser', regData );
-    }
-
-    */
-}
 
 
 
