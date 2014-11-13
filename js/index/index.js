@@ -12,9 +12,8 @@ $(function() {
     lang = defLang;
     encrypt = new JSEncrypt();
     decrypt = new JSEncrypt();
-
-        socket = io.connect('http://localhost:3000');
-        socket.on('connect', function (data) {
+    socket = io.connect('http://localhost:3000');
+    socket.on('connect', function (data) {
 //            console.log(socket.io.engine.id);
             socket.on('otvCheckLoginName', function(data) {
                 if (data.exist) {
@@ -30,24 +29,23 @@ $(function() {
             });
             socket.on('sendKey', function(data) {
                 sKey = JSON.parse(Encode(data, socket.io.engine.id));
-//                var str;
-//                str = sKey.pub;
-//                console.log(sKey.pub);
-//                console.log('str1 = ' + str);
-//                str = str.replace('-----BEGIN PUBLIC KEY-----\n','');
-//                str = str.replace('\n-----END PUBLIC KEY-----','');
-//                sKey.pub = str;
-//                str = sKey.priv;
-//                str = str.replace('-----BEGIN RSA PRIVATE KEY-----\n','');
-//                str = str.replace('\n-----END RSA PRIVATE KEY-----','');
-//                sKey.priv = str;
-//                localStorage.rsaKey = JSON.stringify(sKey);
-//                console.log(sKey.pub);
                 encrypt.setPublicKey(sKey.pub);
 
             });
-        });
-    loadIndex();
+            socket.on('createSession', function(data) {
+                console.log('createSession');
+                $('#modal-container-login').modal('hide')
+                sessionStorage.setItem('session', JSON.stringify(data));
+                // sessionStorage.getItem('session');
+                location="http://herogsold.sls/cabinet.html";
+            });
+            socket.on('loginError', function(data) {
+// ToDo сделать нормальный мультиязычный вывод сообщения
+                alert("Неправильный логин или пароль");
+            });
+
+   });
+   loadIndex();
 });
 
 function loadAbout() {
@@ -93,8 +91,6 @@ function loadIndex(lg) {
 //            console.log('ru');
             loadIndex('ru');
         });
-        //loadAbout();
-        //loadNews();
         loadPodval();
         $( '#btnLoginSend' ).on('click', function(){
             login();
@@ -109,11 +105,6 @@ function loadIndex(lg) {
 }
 
 function checkLoginName() {
-//    console.log(sKey.pub);
-//    EncryptionResult = encrypt.encrypt($( "#inputLogin").val());
-//    console.log('Chipper = ' + EncryptionResult);
-//    data = {};
-//    data.login = EncryptionResult;
     socket.emit('checkLoginName', JSON.stringify(encrypt.encrypt($( "#inputLogin").val())));
 }
 
