@@ -34,7 +34,7 @@ $(function() {
             });
             socket.on('createSession', function(data) {
                 console.log('createSession');
-                $('#modal-container-login').modal('hide')
+                $('#modal-container-login').modal('hide');
                 sessionStorage.setItem('session', JSON.stringify(data));
                 // sessionStorage.getItem('session');
                 location="http://herogsold.sls/cabinet.html";
